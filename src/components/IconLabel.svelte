@@ -19,16 +19,34 @@
         Tv,
         Camera,
     } from "lucide-svelte";
+    import { currentMenu } from "../store";
+    import { onMount } from "svelte";
     export let label = "";
-    let color = "#717171";
+    export let id = 0;
+
+    let color = $currentMenu === id ? "black" : "#717171";
+    $: color = $currentMenu === id ? "black" : "#717171";
+
+    onMount(() => {
+        console.log("currentMenu", $currentMenu, id);
+    });
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
     class="flex flex-col"
     style="color: {color};"
     on:mouseenter={() => (color = "black")}
-    on:mouseleave={() => (color = "#717171")}
+    on:mouseleave={() => {
+        if ($currentMenu !== id) {
+            color = "#717171";
+        }
+    }}
+    on:click={() => {
+        console.log("onclick", id, $currentMenu);
+        $currentMenu = id;
+    }}
 >
     <div class="flex justify-center">
         {#if label === "แก็ดเจ็ต"}

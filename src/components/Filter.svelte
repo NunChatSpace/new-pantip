@@ -90,6 +90,9 @@
     let atStart = true;
     let atEnd = false;
 
+    /**
+     * @type {HTMLDivElement}
+     */
     let scrollContainer;
     let maxScrollLeft = 0;
     const scrollLeft = () => {
@@ -101,14 +104,6 @@
         atEnd =
             scrollContainer.scrollLeft + scrollContainer.offsetWidth >=
             scrollContainer.scrollWidth;
-
-        console.log(
-            "scrollContainer.scrollLeft",
-            scrollContainer.scrollLeft,
-            scrollContainer.offsetWidth,
-            scrollContainer.clientWidth,
-            scrollContainer.scrollWidth
-        );
     };
 
     onMount(() => {
@@ -152,8 +147,8 @@
         style="overflow-x: auto; white-space: nowrap;"
         bind:this={scrollContainer}
     >
-        {#each forumList as forum}
-            <IconLabel label={forum.title}></IconLabel>
+        {#each forumList as forum, index}
+            <IconLabel id={index + 1} label={forum.title}></IconLabel>
         {/each}
     </div>
     {#if !atEnd}
