@@ -6,7 +6,7 @@
 
 {#if $platform === PLATFORM_MOBILE || $platform === PLATFORM_TABLET}
     <div
-        class="footer-container fixed bottom-0 w-full flex justify-center items-centerpt-1"
+        class="footer-container fixed bottom-0 w-full flex justify-center items-center pt-1"
     >
         <div class="grid grid-cols-3 grid-flow-col gap-10">
             <div class="col-span-1">
@@ -31,6 +31,7 @@
 
 <style>
     .footer-container {
+        height: 40px;
         background-color: white;
     }
 </style>
